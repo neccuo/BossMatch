@@ -15,6 +15,10 @@
 		75E7F7742BD6B5BF0005F17B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75E7F7722BD6B5BF0005F17B /* Main.storyboard */; };
 		75E7F7762BD6B5C30005F17B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75E7F7752BD6B5C30005F17B /* Assets.xcassets */; };
 		75E7F7792BD6B5C30005F17B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75E7F7772BD6B5C30005F17B /* LaunchScreen.storyboard */; };
+		75E7F7802BD6B9E00005F17B /* PosPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E7F77F2BD6B9E00005F17B /* PosPrint.swift */; };
+		75E7F7822BD6BCBB0005F17B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E7F7812BD6BCBB0005F17B /* Card.swift */; };
+		75E7F7842BD873730005F17B /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E7F7832BD873730005F17B /* GameManager.swift */; };
+		75E7F7862BD875420005F17B /* CardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E7F7852BD875420005F17B /* CardManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +31,10 @@
 		75E7F7732BD6B5BF0005F17B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75E7F7752BD6B5C30005F17B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75E7F7782BD6B5C30005F17B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		75E7F77F2BD6B9E00005F17B /* PosPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosPrint.swift; sourceTree = "<group>"; };
+		75E7F7812BD6BCBB0005F17B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		75E7F7832BD873730005F17B /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		75E7F7852BD875420005F17B /* CardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,8 @@
 		75E7F7672BD6B5BF0005F17B /* BossMatch */ = {
 			isa = PBXGroup;
 			children = (
+				75E7F7852BD875420005F17B /* CardManager.swift */,
+				75E7F7812BD6BCBB0005F17B /* Card.swift */,
 				75E7F7682BD6B5BF0005F17B /* AppDelegate.swift */,
 				75E7F76A2BD6B5BF0005F17B /* GameScene.sks */,
 				75E7F76C2BD6B5BF0005F17B /* Actions.sks */,
@@ -67,6 +77,8 @@
 				75E7F7722BD6B5BF0005F17B /* Main.storyboard */,
 				75E7F7752BD6B5C30005F17B /* Assets.xcassets */,
 				75E7F7772BD6B5C30005F17B /* LaunchScreen.storyboard */,
+				75E7F77F2BD6B9E00005F17B /* PosPrint.swift */,
+				75E7F7832BD873730005F17B /* GameManager.swift */,
 			);
 			path = BossMatch;
 			sourceTree = "<group>";
@@ -144,7 +156,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75E7F7802BD6B9E00005F17B /* PosPrint.swift in Sources */,
+				75E7F7842BD873730005F17B /* GameManager.swift in Sources */,
 				75E7F76F2BD6B5BF0005F17B /* GameScene.swift in Sources */,
+				75E7F7862BD875420005F17B /* CardManager.swift in Sources */,
+				75E7F7822BD6BCBB0005F17B /* Card.swift in Sources */,
 				75E7F7712BD6B5BF0005F17B /* GameViewController.swift in Sources */,
 				75E7F7692BD6B5BF0005F17B /* AppDelegate.swift in Sources */,
 			);
