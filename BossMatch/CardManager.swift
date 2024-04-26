@@ -16,10 +16,10 @@ class CardManager
     init(performingScene sceneIn : SKScene)
     {
         self.currentScene = sceneIn
-        layCards(topLeft: CGPoint(x: -200, y: 300),
+        layCards(topLeft: CGPoint(x: -100, y: 200),
                  cardCounts: CGPoint(x: 4, y: 5),
                  // w + a, h + a
-                 offsets: CGPoint(x: 60, y: 110))
+                 offsets: CGPoint(x: 110, y: 210))
         print("CardManager is initialized")
     }
     
