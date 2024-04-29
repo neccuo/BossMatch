@@ -21,6 +21,7 @@ class Card
     private var frontCardTex : SKTexture = SKTexture(imageNamed: "front_card")
     
     private var cardType : CardType? = nil
+    private var cardValue : Int = 0
     
     convenience init()
     {
@@ -29,15 +30,16 @@ class Card
     
     convenience init(cardPosition pos : CGPoint)
     {
-        self.init(cardPosition : pos, type : CardType.dflt)
+        self.init(cardPosition : pos, type : CardType.dflt, value : 1)
     }
     
-    init(cardPosition pos : CGPoint, type cardType : CardType)
+    init(cardPosition pos : CGPoint, type cardType : CardType, value cardValue : Int)
     {
         cardButton = SKSpriteNode(texture: self.backCardTex, size: CGSize(width: 50, height: 100))
         cardButton.position = pos
         self.cardType = cardType
         self.frontCardTex = SKTexture(imageNamed: self.cardType!.getTextureName())
+        self.cardValue = cardValue
         print("Card is initialized.")
     }
     
@@ -78,6 +80,16 @@ class Card
     func getIndexCoors() -> CGPoint
     {
         return indexCoors
+    }
+    
+    func getCardType() -> CardType
+    {
+        return cardType!
+    }
+    
+    func getCardValue() -> Int
+    {
+        return cardValue
     }
     
     func printCard()

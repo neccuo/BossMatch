@@ -62,7 +62,8 @@ class CardManager {
             {
                 let newCardPos: CGPoint = CGPoint(x: orgPos.x + (j * off.x), y: orgPos.y - (i * off.y))
                 let randomType = CardType.random()  // Assign random type to each card
-                let card: Card = Card(cardPosition: newCardPos, type: randomType)
+                let randomNumber = Int.random(in: 1...10)
+                let card: Card = Card(cardPosition: newCardPos, type: randomType, value: randomNumber)
                 card.setIndexCoors(i: Int(i), j: Int(j))
                 card.activateCard(sceneToBeAdded: currentScene!)
                 cardRow.append(card)

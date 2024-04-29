@@ -76,6 +76,7 @@ class GameScene: SKScene {
 //            card?.setColor(colorIn: UIColor.white)
             card?.setTextureFront()
             card?.printCard()
+            print("Opened a card with the value \(card!.getCardValue()).")
         }
     }
     
