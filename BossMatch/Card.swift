@@ -9,6 +9,7 @@ import Foundation
 import SpriteKit
 
 
+
 class Card
 {
     private var cardButton : SKNode! = nil
@@ -19,17 +20,24 @@ class Card
     private var backCardTex : SKTexture = SKTexture(imageNamed: "back_card")
     private var frontCardTex : SKTexture = SKTexture(imageNamed: "front_card")
     
+    private var cardType : CardType? = nil
+    
     convenience init()
     {
         self.init(cardPosition : CGPoint(x : 100, y : 100))
     }
     
-    init(cardPosition pos : CGPoint)
+    convenience init(cardPosition pos : CGPoint)
     {
-        // set card size over here
-        cardButton = SKSpriteNode(texture: self.backCardTex, size: CGSize(width: 100, height: 200))
-//        cardButton = SKSpriteNode(color: UIColor.red, size: CGSize(width: 50, height: 100))
+        self.init(cardPosition : pos, type : CardType.dflt)
+    }
+    
+    init(cardPosition pos : CGPoint, type cardType : CardType)
+    {
+        cardButton = SKSpriteNode(texture: self.backCardTex, size: CGSize(width: 50, height: 100))
         cardButton.position = pos
+        self.cardType = cardType
+        self.frontCardTex = SKTexture(imageNamed: self.cardType!.getTextureName())
         print("Card is initialized.")
     }
     
