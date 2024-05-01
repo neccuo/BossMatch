@@ -13,6 +13,7 @@ import SpriteKit
 class Card
 {
     private var cardButton : SKNode! = nil
+    private var isButtonEnabled : Bool = true
     
     // only for debugging
     private var indexCoors : CGPoint = CGPoint(x : -1, y : -1)
@@ -45,7 +46,7 @@ class Card
     
     public func checkCollision(atPoint pos : CGPoint) -> Bool
     {
-        return cardButton.contains(pos)
+        return cardButton.contains(pos) && self.isButtonEnabled
     }
     
     // add to a scene
@@ -66,10 +67,18 @@ class Card
         cardButtonSKNode.color = colorIn
     }
     
+    func setTextureBack()
+    {
+        let cardButtonSKNode = cardButton as! SKSpriteNode
+        cardButtonSKNode.texture = backCardTex
+        self.isButtonEnabled = true
+    }
+    
     func setTextureFront()
     {
         let cardButtonSKNode = cardButton as! SKSpriteNode
         cardButtonSKNode.texture = frontCardTex
+        self.isButtonEnabled = false
     }
     
     func setIndexCoors(i : Int, j : Int)
