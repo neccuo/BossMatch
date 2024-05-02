@@ -9,7 +9,6 @@ import Foundation
 import SpriteKit
 
 
-
 class Card
 {
     private var cardButton : SKNode! = nil

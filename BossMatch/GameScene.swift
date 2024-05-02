@@ -64,27 +64,13 @@ class GameScene: SKScene {
     }
     
     func touchUp(atPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.red
-//            self.addChild(n)
-//        }
-        
-        let card : Card? = gameManager?.getTouchedCard(atPos: pos)
-        if card != nil
-        {
-//            card?.setColor(colorIn: UIColor.white)
-            card?.setTextureFront()
-            card?.printCard()
-            print("Opened a card with the value \(card!.getCardValue()).")
-        }
+        // checks all
+        gameManager?.touchCard(atPos: pos)
+        gameManager?.touchButton(atPos: pos)
     }
     
     // calls touch down
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if let label = self.label {
-//            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-//        }
         
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }

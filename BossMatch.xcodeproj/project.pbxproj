@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75D3B49E2BE43903002CF34C /* BossManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D3B49D2BE43903002CF34C /* BossManager.swift */; };
+		75D3B4A02BE43971002CF34C /* Boss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D3B49F2BE43971002CF34C /* Boss.swift */; };
 		75E7F7692BD6B5BF0005F17B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E7F7682BD6B5BF0005F17B /* AppDelegate.swift */; };
 		75E7F76B2BD6B5BF0005F17B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 75E7F76A2BD6B5BF0005F17B /* GameScene.sks */; };
 		75E7F76D2BD6B5BF0005F17B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 75E7F76C2BD6B5BF0005F17B /* Actions.sks */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		75D3B49D2BE43903002CF34C /* BossManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BossManager.swift; sourceTree = "<group>"; };
+		75D3B49F2BE43971002CF34C /* Boss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boss.swift; sourceTree = "<group>"; };
 		75E7F7652BD6B5BF0005F17B /* BossMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BossMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E7F7682BD6B5BF0005F17B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75E7F76A2BD6B5BF0005F17B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 				75E7F7772BD6B5C30005F17B /* LaunchScreen.storyboard */,
 				75E7F77F2BD6B9E00005F17B /* PosPrint.swift */,
 				75E7F7832BD873730005F17B /* GameManager.swift */,
+				75D3B49D2BE43903002CF34C /* BossManager.swift */,
+				75D3B49F2BE43971002CF34C /* Boss.swift */,
 			);
 			path = BossMatch;
 			sourceTree = "<group>";
@@ -161,7 +167,9 @@
 				75E7F76F2BD6B5BF0005F17B /* GameScene.swift in Sources */,
 				75E7F7862BD875420005F17B /* CardManager.swift in Sources */,
 				75E7F7822BD6BCBB0005F17B /* Card.swift in Sources */,
+				75D3B4A02BE43971002CF34C /* Boss.swift in Sources */,
 				75E7F7712BD6B5BF0005F17B /* GameViewController.swift in Sources */,
+				75D3B49E2BE43903002CF34C /* BossManager.swift in Sources */,
 				75E7F7692BD6B5BF0005F17B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
