@@ -53,19 +53,10 @@ class CardManager {
     init(performingScene sceneIn: SKScene)
     {
         self.currentScene = sceneIn
-        setupLevel()
         
         print("CardManager is initialized")
     }
     
-    // called when init or to reset cards
-    public func setupLevel()
-    {
-        deactivateCards()
-        layCardsToMiddle(distFromMid: CGPoint(x: 0, y: 0),
-                         cardCounts: CGPoint(x: 5, y: 7),
-                         cardOffset: 10)
-    }
     
     public func getCurrentScene() -> SKScene
     {
@@ -84,6 +75,29 @@ class CardManager {
             }
         }
         return nil
+    }
+    
+    public func setCardsByLevel(level : Int)
+    {
+        deactivateCards()
+        switch level {
+        case 1:
+            layCardsToMiddle(distFromMid: CGPoint(x: 0, y: 0),
+                             cardCounts: CGPoint(x: 5, y: 5),
+                             cardOffset: 10)
+        case 2:
+            layCardsToMiddle(distFromMid: CGPoint(x: 0, y: 0),
+                             cardCounts: CGPoint(x: 5, y: 7),
+                             cardOffset: 10)
+        case 3:
+            layCardsToMiddle(distFromMid: CGPoint(x: 0, y: 0),
+                             cardCounts: CGPoint(x: 6, y: 7),
+                             cardOffset: 10)
+        default:
+            layCardsToMiddle(distFromMid: CGPoint(x: 0, y: 0),
+                             cardCounts: CGPoint(x: 4, y: 4),
+                             cardOffset: 10)
+        }
     }
     
     private func layCardsToMiddle(distFromMid dist: CGPoint, cardCounts countVec: CGPoint, cardOffset off: CGFloat)

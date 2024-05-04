@@ -13,29 +13,28 @@ class GameManager
 {
     private var cardManager : CardManager
     private var bossManager : BossManager
+    private var matchManager : MatchManager
     private var pTotalPowers : [CardType: Int] = [.attack: 1, .health: 1, .defense: 0]
     
     // it should give you a result of a potential fight with your current stats and the boss stats
     private var simulateFightButton : SKNode? = nil
+    
+    private var currentLevel : Int = 0
 
     init(cardScreenScene cardScene : SKScene)
     {
         self.cardManager = CardManager(performingScene : cardScene)
         self.bossManager = BossManager()
+        self.matchManager = MatchManager()
         
         // set UI
         displayPTotalPowers(self.cardManager.getCurrentScene())
         setButtons()
+        
+        self.setLevel(level : currentLevel)
+
 
         print("GameManager is initialized")
-    }
-    
-    public func initLevel()
-    {
-        // total powers remain the same
-        updateTotalPower(totalPowers: [.attack: 1, .health: 1, .defense: 0])
-        cardManager.setupLevel()
-        bossManager.nextLevel()
     }
     
     public func touchCard(atPos pos : CGPoint) // -> Bool
@@ -43,10 +42,14 @@ class GameManager
         let card = cardManager.getCollidedCard(touchPos: pos)
         if card != nil
         {
-            card?.setTextureFront()
-//            card?.printCard()
-            updateTotalPower(card: card!)
-            print("Opened a card with the value \(card!.getCardValue()).")
+            let matchResult = matchManager.match(card: card!)
+            // there is a match
+            if matchResult > 0
+            {
+                updateTotalPower(cardType: card!.getCardType(), cardIncValue: matchResult)
+            }
+//            updateTotalPower(card: card!)
+//            print("Opened a card with the value \(card!.getCardValue()).")
         }
     }
     
@@ -58,21 +61,45 @@ class GameManager
                                           pTotalPowers[.health]!,
                                           pTotalPowers[.defense]!)
             print("Bossfight result: \(res)")
-            initLevel()
+            if(res > 0)
+            {
+                // next level
+                currentLevel += 1
+                setLevel(level: currentLevel)
+            }
+            else
+            {
+                // reset level
+                setLevel(level : currentLevel)
+            }
         }
+    }
+    
+    private func setLevel(level : Int)
+    {
+        // total powers may remain the same or reset????
+        updateTotalPower(totalPowers: [.attack: 1, .health: 1, .defense: 0])
+        bossManager.setBossByLevel(level: level)
+        cardManager.setCardsByLevel(level: level)
+    }
+    
+    private func updateTotalPower(cardType type : CardType, cardIncValue value : Int)
+    {
+        pTotalPowers[type] = (pTotalPowers[type] ?? 0) + value
+        self.setTotalPowerUI()
     }
     
     private func updateTotalPower(totalPowers pow : [CardType: Int])
     {
         pTotalPowers = pow
-        setTotalPowerUI()
+        self.setTotalPowerUI()
     }
     
     private func updateTotalPower(card: Card) 
     {
         let type = card.getCardType() // Directly use the type without conditional binding
         pTotalPowers[type] = (pTotalPowers[type] ?? 0) + card.getCardValue()
-        setTotalPowerUI()
+        self.setTotalPowerUI()
     }
     
     private func setTotalPowerUI()

@@ -18,6 +18,7 @@ class Card
     private var indexCoors : CGPoint = CGPoint(x : -1, y : -1)
     
     private var backCardTex : SKTexture = SKTexture(imageNamed: "back_card")
+    // no such thing called front_card
     private var frontCardTex : SKTexture = SKTexture(imageNamed: "front_card")
     
     private var cardType : CardType? = nil
@@ -38,11 +39,13 @@ class Card
     
     init(cardPosition pos : CGPoint, type cardType : CardType, value cardValue : Int)
     {
-        cardButton = SKSpriteNode(texture: self.backCardTex, size: CGSize(width: Card.width, height: Card.height))
+        cardButton = SKSpriteNode(texture: nil, size: CGSize(width: Card.width, height: Card.height))
         cardButton.position = pos
         self.cardType = cardType
         self.frontCardTex = SKTexture(imageNamed: self.cardType!.getTextureName())
         self.cardValue = cardValue
+        // sets the texture
+        setTextureBack()
 //        print("Card is initialized.")
     }
     
@@ -63,7 +66,7 @@ class Card
         self.cardButton.removeFromParent()
     }
     
-    func setColor(colorIn : UIColor)
+    func setColor(colorIn : SKColor)
     {
         let cardButtonSKNode = cardButton as! SKSpriteNode
         cardButtonSKNode.color = colorIn
@@ -72,17 +75,21 @@ class Card
     func setTextureBack()
     {
         let cardButtonSKNode = cardButton as! SKSpriteNode
+        
+        cardButtonSKNode.color = SKColor.white
+        cardButtonSKNode.colorBlendFactor = 1.0
         cardButtonSKNode.texture = backCardTex
+        
         self.isButtonEnabled = true
     }
     
-    func setTextureFront()
+    func setTextureFront(colorIn : SKColor = SKColor.white)
     {
         let cardButtonSKNode = cardButton as! SKSpriteNode
-        cardButtonSKNode.texture = frontCardTex
         
-        cardButtonSKNode.color = SKColor.yellow
+        cardButtonSKNode.color = colorIn
         cardButtonSKNode.colorBlendFactor = 0.8
+        cardButtonSKNode.texture = frontCardTex
         
         self.isButtonEnabled = false
     }

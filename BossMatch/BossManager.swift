@@ -15,7 +15,7 @@ class BossManager
     
     init()
     {
-        // setLevel(0)
+//        self.setLevel(1)
         print("BossManager is initialized")
     }
     
@@ -24,12 +24,7 @@ class BossManager
         return currBoss
     }
     
-    public func nextLevel()
-    {
-        setLevel(currLevel+1)
-    }
-    
-    private func setLevel(_ level : Int)
+    public func setBossByLevel(level : Int)
     {
         currLevel = level
         switch level
@@ -43,6 +38,8 @@ class BossManager
         default:
             currBoss = Boss(1, 1, 0)
         }
+        print("<<<New boss>>>")
+        print("ATT: \(currBoss.ATT()), HLT: \(currBoss.HLT()), DEF: \(currBoss.DEF())")
     }
     
     public func simulateBossFight(_ pAtt : Int, _ pHea : Int, _ pDef : Int) -> Int
