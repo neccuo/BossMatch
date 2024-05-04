@@ -14,8 +14,6 @@ class GameScene: SKScene {
     private var spinnyNode : SKShapeNode?
     
     private var gameManager : GameManager? = nil
-    private var posPrint : PosPrint?
-//    private var card : Card = Card()
 
     // Entry point
     override func didMove(to view: SKView) {
@@ -41,13 +39,11 @@ class GameScene: SKScene {
         }
         
         self.gameManager = GameManager(cardScreenScene: self)
-        self.posPrint = PosPrint()
-
     }
     
     // called by touchesBegan
     func touchDown(atPoint pos : CGPoint) {
-        self.posPrint?.printPosition(pos)
+        PosPrint.printPosition(pos)
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
             n.strokeColor = SKColor.green

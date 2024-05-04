@@ -10,10 +10,12 @@ import SpriteKit
 
 class BossManager
 {
-    private var currBoss : Boss = Boss(20, 50, 10)
+    private var currBoss : Boss = Boss(1, 1, 0)
+    private var currLevel : Int = 0
     
     init()
     {
+        // setLevel(0)
         print("BossManager is initialized")
     }
     
@@ -22,7 +24,28 @@ class BossManager
         return currBoss
     }
     
-    public func simulateBossFight(_ pAtt : Int, _ pHea : Int, _ pDef : Int)
+    public func nextLevel()
+    {
+        setLevel(currLevel+1)
+    }
+    
+    private func setLevel(_ level : Int)
+    {
+        currLevel = level
+        switch level
+        {
+        case 1:
+            currBoss = Boss(5, 20, 0)
+        case 2:
+            currBoss = Boss(20, 50, 10)
+        case 3:
+            currBoss = Boss(40, 100, 25)
+        default:
+            currBoss = Boss(1, 1, 0)
+        }
+    }
+    
+    public func simulateBossFight(_ pAtt : Int, _ pHea : Int, _ pDef : Int) -> Int
     {
         // apply defense stats. cannot exceed 80
         // reduce attack based on defense
@@ -36,15 +59,18 @@ class BossManager
         // end states
         if bossTurnToKill > playerTurnToKill
         {
-            print("player won")
+//            print("player won")
+            return 1
         }
         else if bossTurnToKill < playerTurnToKill
         {
-            print("boss won")
+//            print("boss won")
+            return -1
         }
         else
         {
-            print("stalemate")
+//            print("stalemate")
+            return 0
         }
     }
     

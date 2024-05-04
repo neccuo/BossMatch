@@ -23,6 +23,9 @@ class Card
     private var cardType : CardType? = nil
     private var cardValue : Int = 0
     
+    static var width : CGFloat = 50.0
+    static var height : CGFloat = 100.0
+    
     convenience init()
     {
         self.init(cardPosition : CGPoint(x : 100, y : 100))
@@ -35,12 +38,12 @@ class Card
     
     init(cardPosition pos : CGPoint, type cardType : CardType, value cardValue : Int)
     {
-        cardButton = SKSpriteNode(texture: self.backCardTex, size: CGSize(width: 50, height: 100))
+        cardButton = SKSpriteNode(texture: self.backCardTex, size: CGSize(width: Card.width, height: Card.height))
         cardButton.position = pos
         self.cardType = cardType
         self.frontCardTex = SKTexture(imageNamed: self.cardType!.getTextureName())
         self.cardValue = cardValue
-        print("Card is initialized.")
+//        print("Card is initialized.")
     }
     
     public func checkCollision(atPoint pos : CGPoint) -> Bool
@@ -52,7 +55,7 @@ class Card
     public func activateCard(sceneToBeAdded scene: SKScene)
     {
         scene.addChild(self.cardButton)
-        print("Card is activated")
+//        print("Card is activated")
     }
     
     public func deactivateCard()
@@ -77,6 +80,10 @@ class Card
     {
         let cardButtonSKNode = cardButton as! SKSpriteNode
         cardButtonSKNode.texture = frontCardTex
+        
+        cardButtonSKNode.color = SKColor.yellow
+        cardButtonSKNode.colorBlendFactor = 0.8
+        
         self.isButtonEnabled = false
     }
     
@@ -103,7 +110,7 @@ class Card
     func printCard()
     {
         print(
-            "card at index coor (\(indexCoors.x), \(indexCoors.y) and" +
+            "card at index coor (\(indexCoors.x), \(indexCoors.y) and " +
             "pos (x: \(cardButton.position.x), y: \(cardButton.position.y))"
             )
     }

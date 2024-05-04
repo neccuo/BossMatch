@@ -14,7 +14,7 @@ class PosPrint
         print("PosPrint is initialized.")
     }
     
-    func printPosition(_ pos : CGPoint)
+    static func printPosition(_ pos : CGPoint)
     {
         
         print("(x: \(pos.x), y: \(pos.y))")

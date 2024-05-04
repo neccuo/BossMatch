@@ -23,10 +23,19 @@ class GameManager
         self.cardManager = CardManager(performingScene : cardScene)
         self.bossManager = BossManager()
         
+        // set UI
         displayPTotalPowers(self.cardManager.getCurrentScene())
         setButtons()
 
         print("GameManager is initialized")
+    }
+    
+    public func initLevel()
+    {
+        // total powers remain the same
+        updateTotalPower(totalPowers: [.attack: 1, .health: 1, .defense: 0])
+        cardManager.setupLevel()
+        bossManager.nextLevel()
     }
     
     public func touchCard(atPos pos : CGPoint) // -> Bool
@@ -35,32 +44,41 @@ class GameManager
         if card != nil
         {
             card?.setTextureFront()
-            card?.printCard()
+//            card?.printCard()
             updateTotalPower(card: card!)
             print("Opened a card with the value \(card!.getCardValue()).")
-//            return true
         }
-//        return false
     }
     
     public func touchButton(atPos pos : CGPoint) // -> Bool
     {
         if self.simulateFightButton != nil && self.simulateFightButton!.contains(pos)
         {
-            bossManager.simulateBossFight(pTotalPowers[.attack]!,
+            let res = bossManager.simulateBossFight(pTotalPowers[.attack]!,
                                           pTotalPowers[.health]!,
                                           pTotalPowers[.defense]!)
-//            return true
+            print("Bossfight result: \(res)")
+            initLevel()
         }
-//        return false
     }
     
-    private func updateTotalPower(card: Card) {
+    private func updateTotalPower(totalPowers pow : [CardType: Int])
+    {
+        pTotalPowers = pow
+        setTotalPowerUI()
+    }
+    
+    private func updateTotalPower(card: Card) 
+    {
         let type = card.getCardType() // Directly use the type without conditional binding
         pTotalPowers[type] = (pTotalPowers[type] ?? 0) + card.getCardValue()
-        displayPTotalPowers(self.cardManager.getCurrentScene())  // Refresh display whenever total powers are updated
+        setTotalPowerUI()
     }
     
+    private func setTotalPowerUI()
+    {
+        displayPTotalPowers(self.cardManager.getCurrentScene())
+    }
     
     private func displayPTotalPowers(_ scene: SKScene) {
         // Unique identifiers for the nodes
@@ -75,7 +93,7 @@ class GameManager
             powerPanel = SKSpriteNode()
             powerPanel.name = panelName
             powerPanel.anchorPoint = CGPoint(x: 0.5, y: 0) // Centered horizontally, aligned to the bottom
-            powerPanel.position = CGPoint(x: scene.frame.midX, y: scene.frame.minY + 250) // Raise the panel a bit above the bottom
+            powerPanel.position = CGPoint(x: scene.frame.midX, y: scene.frame.minY + 100) // Raise the panel a bit above the bottom
             scene.addChild(powerPanel)
         }
         
@@ -110,7 +128,7 @@ class GameManager
         self.simulateFightButton!.position = CGPoint(x: 250, y: 450)
         
         cardManager.getCurrentScene().addChild(simulateFightButton!)
-        print("Card is activated")
+        print("Button is activated")
     }
     
 }
