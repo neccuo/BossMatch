@@ -13,9 +13,31 @@ class MatchManager
     private var cachedCard : Card? = nil
     private var lock : Bool = false
     
+    private var availableMatch : Int = 0
+    
     init()
     {
         print("MatchManager is initialized")
+    }
+    
+    public func getAvailableMatch() -> Int
+    {
+        return availableMatch
+    }
+    
+    public func setAvailableMatchByLevel(level : Int)
+    {
+        switch level
+        {
+        case 1:
+            availableMatch = 10
+        case 2:
+            availableMatch = 17
+        case 3:
+            availableMatch = 25
+        default:
+            availableMatch = 5
+        }
     }
     
     // ~~~ENTRY POINT FOR CARD INPUT~~~
@@ -23,18 +45,23 @@ class MatchManager
     // -44: caught in lock
     //  00: if only one card is open;
     // -01: for no match
+    // -02: no available match left
     public func match(card : Card) -> Int
     {
         if lock == true
         {
             return -44
         }
+        if availableMatch <= 0
+        {
+            return -2
+        }
+        
         if cachedCard == nil
         {
             onFirstCard(card: card)
             return 0
         }
-        
         if cachedCard!.getCardType() == card.getCardType()
         {
             // guaranteed to be positive
@@ -59,6 +86,7 @@ class MatchManager
     private func onMatch(card : Card)
     {
         print("match")
+        availableMatch -= 1
         card.setTextureFront(colorIn: SKColor.green)
         cachedCard!.setTextureFront(colorIn: SKColor.green)
         cachedCard = nil
@@ -67,6 +95,7 @@ class MatchManager
     private func onNoMatch(card : Card)
     {
         print("no match")
+        availableMatch -= 1
         card.setTextureFront(colorIn: SKColor.red)
         cachedCard!.setTextureFront(colorIn: SKColor.red)
         lock = true
